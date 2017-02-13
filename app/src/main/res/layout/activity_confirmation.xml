@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="example.com.bandara.MainActivity"
+    android:background="#A91933">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="Confirmation"
+        android:textColor="?attr/colorAccent"
+        android:id="@+id/textViewYourProfile"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="535dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="From :"
+        android:textColor="?attr/colorAccent"
+        android:id="@+id/textViewFrom"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="450dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="Jalan POM IX, Lorok Pakjo, Ilir Barat I, Palembang City, South Sumatra 30137"
+        android:textColor="#CCCCCC"
+        android:id="@+id/textViewFromAdrress"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="410dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="To : "
+        android:textColor="?attr/colorAccent"
+        android:id="@+id/textViewTo"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="330dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="Jl. Gubernur H. Asnawi Mangku Alam, Talang Betutu, Sukarami, Kota Palembang, Sumatera Selatan 30961"
+        android:textColor="#CCCCCC"
+        android:id="@+id/textViewToAddress"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="270dp"
+        android:textStyle="bold"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="Total Payment :"
+        android:textColor="?attr/colorAccent"
+        android:id="@+id/textViewTotal"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="180dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="Rp. 20.000,-"
+        android:textColor="#CCCCCC"
+        android:id="@+id/textViewPrice"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="140dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="left"
+        android:text="4.2 KM"
+        android:textColor="#CCCCCC"
+        android:id="@+id/textViewDistance"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="120dp"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_findDriver"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="bottom|end"
+        android:background="?attr/colorAccent"
+        android:textColor="?attr/colorPrimaryDark"
+        android:padding="12dp"
+        android:textSize="20dp"
+        android:text="Find Driver"/>
+
+</android.support.design.widget.CoordinatorLayout>

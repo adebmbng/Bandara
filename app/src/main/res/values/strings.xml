@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Bandara</string>
+    <string name="search_hint">Search</string>
+    <string name="profile_hint">Profile</string>
+    <string name="history_hint">History</string>
+    <string name="action_settings">Settings</string>
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="example.com.bandara.MainActivity"
+    android:background="#A91933">
+
+    <com.joooonho.SelectableRoundedImageView
+        android:id="@+id/img_profileUser"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/jivan"
+        app:sriv_border_color="#FA961A"
+        app:sriv_border_width="4dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="15dp"
+        app:sriv_oval="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="WE FOUND"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="535dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="YOUR DRIVER!"
+        android:textColor="?attr/colorAccent"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="485dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="The Driver is On The Way"
+        android:textColor="#CCCCCC"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="430dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="to Your Location"
+        android:textColor="#CCCCCC"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="405dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewNameDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="Jivan Alawin"
+        android:textColor="?attr/colorAccent"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="150dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewHpDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="+6281363111135"
+        android:textColor="#CCCCCC"
+        android:textStyle="italic"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="125dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_okDriver"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="bottom|end"
+        android:background="?attr/colorAccent"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:text="OK"/>
+
+</android.support.design.widget.CoordinatorLayout>

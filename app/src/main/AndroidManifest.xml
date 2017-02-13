@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="example.com.bandara" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="Tranxit Badaruddin"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <activity android:name="example.com.bandara.MainActivity"
+            android:label="Tranxit Badaruddin"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".SplashActivity"
+            android:label="Tranxit Badaruddin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable"
+            />
+
+        <activity
+            android:name="example.com.bandara.LoginActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.SignupActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.ProfileActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.HistoryActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.ConfirmationActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.SearchDriverActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
+            android:name="example.com.bandara.RateDriverActivity"
+            android:label="Tranxit Badaruddin"/>
+
+    </application>
+
+</manifest>
