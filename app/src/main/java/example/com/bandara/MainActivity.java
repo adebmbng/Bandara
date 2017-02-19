@@ -2,11 +2,9 @@ package example.com.bandara;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
 import android.view.View;
@@ -15,8 +13,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private TextView textViewSearch;
+    private LinearLayoutManager lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textViewSearch = (TextView) findViewById(R.id.textViewSearch);
+        //textViewSearch = (TextView) findViewById(R.id.textViewSearch);
+
+        List<ItemObjectPromo> rowListItem = getAllItemList();
+        lLayout = new LinearLayoutManager(MainActivity.this);
+
+        RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
+        rView.setLayoutManager(lLayout);
+
+        RecyclerViewAdapterPromo rcAdapter = new RecyclerViewAdapterPromo(MainActivity.this, rowListItem);
+        rView.setAdapter(rcAdapter);
 
         Button buttonBook = (Button) findViewById(R.id.btn_book);
         buttonBook.setOnClickListener(new View.OnClickListener(){
@@ -46,24 +57,24 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.search);
+        //MenuItem searchItem = menu.findItem(R.id.search);
         final MenuItem profileItem = menu.findItem(R.id.profile);
         final MenuItem historyItem = menu.findItem(R.id.history);
 
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-            @Override
-            public boolean onQueryTextSubmit(String query){
-                textViewSearch.setText("Hasil pencarian Query:" + query);
-                searchView.clearFocus();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText){
-                return false;
-            }
-        });
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+//            @Override
+//            public boolean onQueryTextSubmit(String query){
+//                textViewSearch.setText("Hasil pencarian Query:" + query);
+//                searchView.clearFocus();
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText){
+//                return false;
+//            }
+//        });
 
 //        searchView.setOnCloseListener(new SearchView.OnCloseListener(){
 //            @Override
@@ -116,5 +127,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private List<ItemObjectPromo> getAllItemList(){
+        List<ItemObjectPromo> allItems = new ArrayList<>();
+        allItems.add(new ItemObjectPromo("Promo 10%", R.drawable.newyork));
+        allItems.add(new ItemObjectPromo("Promo 15%", R.drawable.canada));
+        allItems.add(new ItemObjectPromo("Promo 20%", R.drawable.uk));
+        allItems.add(new ItemObjectPromo("Promo 25%", R.drawable.germany));
+        allItems.add(new ItemObjectPromo("Promo 30%", R.drawable.sweden));
+
+        return allItems;
     }
 }
