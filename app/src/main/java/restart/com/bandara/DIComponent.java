@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import restart.com.bandara.activities.LoginActivity;
 import restart.com.bandara.activities.MainActivity;
+import restart.com.bandara.activities.SignupActivity;
 import restart.com.bandara.activities.SplashActivity;
 import restart.com.bandara.presenters.login.LoginPresenters;
 
@@ -16,6 +17,7 @@ import restart.com.bandara.presenters.login.LoginPresenters;
 @Component(modules = {AppModule.class})
 public interface DIComponent {
     void inject(LoginActivity act);
+    void inject(SignupActivity act);
     void inject(MainActivity act);
     void inject(SplashActivity act);
 }

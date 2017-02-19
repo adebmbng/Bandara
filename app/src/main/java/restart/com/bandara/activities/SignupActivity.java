@@ -1,6 +1,7 @@
 package restart.com.bandara.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,15 +12,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import restart.com.bandara.MyApplication;
 import restart.com.bandara.R;
+import restart.com.bandara.presenters.signup.SignupPresenter;
+import restart.com.bandara.presenters.signup.SignupPresenters;
+import restart.com.bandara.presenters.signup.SignupView;
+import restart.com.bandara.services.APIService;
 
 /**
  * Created by lenovo on 2/7/2017.
  */
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity implements SignupView{
     private static final String TAG = "SignupActivity";
 
     @BindView(R.id.input_name)
@@ -31,104 +40,105 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.link_login)
     TextView _loginLink;
 
+    private Context ctx;
+    private SignupPresenter presenters;
+    private ProgressDialog progressDialog;
+
+    @Inject
+    APIService api;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+        ((MyApplication) getApplication()).getDc().inject(this);
+        ctx = this;
+        setPresenter(presenters);
 
-        _signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signup();
-            }
-        });
-
-        _loginLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
-                finish();
-            }
-        });
     }
 
+    @OnClick(R.id.link_login)
+    void gotoLogin(){
+        finish();
+    }
+
+    @OnClick(R.id.btn_signup)
     public void signup() {
         Log.d(TAG, "Signup");
-
-        if (!validate()) {
-            onSignupFailed();
-            return;
-        }
-
-        _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
+        presenters.doValidate(name, email, password);
 
+    }
+
+    @Override
+    public void onRegistering() {
+        clearError();
+        _signupButton.setEnabled(false);
+
+        progressDialog = new ProgressDialog(SignupActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+    }
+
+    @Override
+    public void onRegisterSuccess() {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
+                        _signupButton.setEnabled(true);
+                        setResult(RESULT_OK, null);
+                        finish();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
 
-
-    public void onSignupSuccess() {
-        _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
-    }
-
-    public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
+    @Override
+    public void onRegisterFailed() {
+        progressDialog.dismiss();
+        Toast.makeText(getBaseContext(), "Sign Up failed", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
     }
 
-    public boolean validate() {
-        boolean valid = true;
+    @Override
+    public void onValidateNameWrong() {
+        progressDialog.dismiss();
+        _nameText.setError("at least 3 characters");
+    }
 
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+    @Override
+    public void onValidateEmailWrong() {
+        progressDialog.dismiss();
+        _emailText.setError("enter a valid email address");
+    }
 
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
-            valid = false;
+    @Override
+    public void onValidatePassWrong() {
+        progressDialog.dismiss();
+        _passwordText.setError("between 4 and 10 alphanumeric characters");
+    }
+
+    @Override
+    public void clearError() {
+        _nameText.setError(null);
+        _emailText.setError(null);
+        _passwordText.setError(null);
+    }
+
+    @Override
+    public void setPresenter(SignupPresenter presenter) {
+        if(presenter!=null){
+            presenters = presenter;
         } else {
-            _nameText.setError(null);
+            presenters = new SignupPresenters(this, api);
         }
-
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
-            valid = false;
-        } else {
-            _emailText.setError(null);
-        }
-
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
-        } else {
-            _passwordText.setError(null);
-        }
-
-        return valid;
     }
 }
