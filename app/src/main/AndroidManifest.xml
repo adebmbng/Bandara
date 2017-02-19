@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="example.com.bandara" >
+    package="restart.com.bandara" >
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="example.com.bandara.permission.MAPS_RECEIVE"/>
@@ -20,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name="example.com.bandara.MainActivity"
+        <activity android:name="restart.com.bandara.activities.MainActivity"
             android:label="Tranxit Badaruddin"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-            android:name=".SplashActivity"
+            android:name="restart.com.bandara.activities.SplashActivity"
             android:label="Tranxit Badaruddin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,39 +41,39 @@
             />
 
         <activity
-            android:name="example.com.bandara.LoginActivity"
+            android:name="restart.com.bandara.activities.LoginActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.SignupActivity"
+            android:name="restart.com.bandara.activities.SignupActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.ProfileActivity"
+            android:name="restart.com.bandara.activities.ProfileActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.HistoryActivity"
+            android:name="restart.com.bandara.activities.HistoryActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.ConfirmationActivity"
+            android:name="restart.com.bandara.activities.ConfirmationActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.SearchDriverActivity"
+            android:name="restart.com.bandara.activities.SearchDriverActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.RateDriverActivity"
+            android:name="restart.com.bandara.activities.RateDriverActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.ChooseActivity"
+            android:name="restart.com.bandara.activities.ChooseActivity"
             android:label="Tranxit Badaruddin"/>
 
         <activity
-            android:name="example.com.bandara.EditProfileActivity"
+            android:name="restart.com.bandara.activities.EditProfileActivity"
             android:label="Tranxit Badaruddin"/>
 
     </application>

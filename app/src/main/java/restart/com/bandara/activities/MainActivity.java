@@ -1,4 +1,4 @@
-package example.com.bandara;
+package restart.com.bandara.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import restart.com.bandara.ItemObjectPromo;
+import restart.com.bandara.R;
+import restart.com.bandara.RecyclerViewAdapterPromo;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textViewSearch;

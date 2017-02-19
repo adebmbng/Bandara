@@ -1,28 +1,30 @@
-package example.com.bandara;
+package restart.com.bandara.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import restart.com.bandara.R;
+
 /**
  * Created by lenovo on 2/7/2017.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class SearchDriverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_searchdriver);
 
-        Button btnEditProfile = (Button)findViewById(R.id.btn_editProfile);
-        btnEditProfile.setOnClickListener(new View.OnClickListener(){
+        Button buttonOkDriver = (Button) findViewById(R.id.btn_okDriver);
+        buttonOkDriver.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                Intent i = new Intent(SearchDriverActivity.this, RateDriverActivity.class);
                 startActivity(i);
             }
         });

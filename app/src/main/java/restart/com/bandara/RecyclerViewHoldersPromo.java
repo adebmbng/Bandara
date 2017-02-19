@@ -1,12 +1,10 @@
-package example.com.bandara;
+package restart.com.bandara;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import example.com.bandara.R;
 
 /**
  * Created by lenovo on 2/16/2017.

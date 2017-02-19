@@ -1,4 +1,4 @@
-package example.com.bandara;
+package restart.com.bandara;
 
 import org.junit.Test;
 

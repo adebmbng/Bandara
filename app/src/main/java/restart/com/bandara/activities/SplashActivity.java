@@ -1,10 +1,12 @@
-package example.com.bandara;
+package restart.com.bandara.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+
+import restart.com.bandara.R;
 
 /**
  * Created by lenovo on 2/7/2017.

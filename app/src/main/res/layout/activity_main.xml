@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="#fff"
-    tools:context="example.com.bandara.MainActivity">
+    tools:context="restart.com.bandara.activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            tools:context=".MainActivity">
+            tools:context=".activities.MainActivity">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

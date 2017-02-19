@@ -1,4 +1,4 @@
-package example.com.bandara;
+package restart.com.bandara.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,8 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import restart.com.bandara.R;
 
 /**
  * Created by lenovo on 2/7/2017.

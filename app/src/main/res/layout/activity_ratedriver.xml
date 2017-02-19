@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="example.com.bandara.MainActivity"
+    tools:context="restart.com.bandara.activities.MainActivity"
     android:background="#A91933">
 
     <android.support.v4.widget.NestedScrollView

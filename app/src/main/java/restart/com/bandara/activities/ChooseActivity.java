@@ -1,19 +1,19 @@
-package example.com.bandara;
+package restart.com.bandara.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import restart.com.bandara.R;
+
 /**
- * Created by lenovo on 2/7/2017.
+ * Created by lenovo on 2/17/2017.
  */
 
-public class HistoryActivity extends AppCompatActivity {
+public class ChooseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_choose);
     }
 }

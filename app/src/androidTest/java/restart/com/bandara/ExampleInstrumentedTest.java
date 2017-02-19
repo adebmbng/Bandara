@@ -1,4 +1,4 @@
-package example.com.bandara;
+package restart.com.bandara;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
