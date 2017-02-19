@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="example.com.bandara.MainActivity"
+    android:background="#A91933">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.joooonho.SelectableRoundedImageView
+        android:id="@+id/img_profileUser"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/akbar"
+        app:sriv_border_color="#FA961A"
+        app:sriv_border_width="4dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="240dp"
+        app:sriv_oval="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:text="Edit Your Profile"
+        android:textColor="?attr/colorAccent"
+        android:id="@+id/textViewYourProfile"
+        android:textStyle="bold"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="535dp"/>
+
+    <!-- Name Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:textColor="#fff"
+            android:hint="Name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Name Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="330dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/edit_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#fff"
+            android:hint="Password" />
+    </android.support.design.widget.TextInputLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_editProfile"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="bottom|end"
+        android:background="?attr/colorAccent"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:text="Submit"/>
+
+</android.support.design.widget.CoordinatorLayout>
