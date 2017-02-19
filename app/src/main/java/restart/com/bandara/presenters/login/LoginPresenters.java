@@ -7,6 +7,8 @@ import javax.inject.Inject;
 
 import restart.com.bandara.MyApplication;
 import restart.com.bandara.services.APIService;
+import restart.com.bandara.utils.Constant;
+import restart.com.bandara.utils.ShrdPrfUtils;
 
 /**
  * Created by Debam on 2/19/17.
@@ -15,18 +17,15 @@ import restart.com.bandara.services.APIService;
 public class LoginPresenters implements LoginPresenter {
 
     private LoginView view;
-    private Context ctx;
 
-    @Inject
-    SharedPreferences sp;
+    private SharedPreferences sp;
 
-    @Inject
-    APIService api;
+    private APIService api;
 
-    public LoginPresenters(LoginView view, Context ctx) {
+    public LoginPresenters(LoginView view, SharedPreferences sp, APIService api) {
         this.view = view;
-        this.ctx = ctx;
-        ((MyApplication) ctx).getDc().inject(this);
+        this.sp = sp;
+        this.api = api;
     }
 
     @Override
@@ -55,6 +54,7 @@ public class LoginPresenters implements LoginPresenter {
         boolean login=true;
 
         if(login){
+            ShrdPrfUtils.saveBoolean(sp, Constant.SHARED_PREFERENCE.HAS_LOGIN, true);
             view.onLoginSuccess();
         } else {
             view.onLoginFailed();

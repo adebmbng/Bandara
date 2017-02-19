@@ -8,7 +8,7 @@ public class Constant {
 
 
     public class URL_CONSTANT {
-        public static final String BASE_URL = "";
+        public static final String BASE_URL = "https://www.google.com/";
     }
 
     public class SHARED_PREFERENCE {

@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     }
 
-    @OnClick(R.id.btn_signup)
+    @OnClick(R.id.link_signup)
     void signUp(){
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
         startActivityForResult(intent, REQUEST_SIGNUP);
@@ -119,11 +119,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @Override
     public void onLoginSuccess() {
-
-        ShrdPrfUtils.saveBoolean(sp, Constant.SHARED_PREFERENCE.HAS_LOGIN, true);
-
         _loginButton.setEnabled(true);
-        
+
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
@@ -160,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         if(presenter != null){
             presenters = presenter;
         } else {
-            presenters = new LoginPresenters(this, ctx);
+            presenters = new LoginPresenters(this, sp, api);
         }
     }
 }
