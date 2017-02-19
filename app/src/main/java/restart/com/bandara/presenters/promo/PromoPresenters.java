@@ -49,7 +49,6 @@ public class PromoPresenters implements PromoPresenter{
 
     @Override
     public void getPromoDb() {
-        view.onLoadPromo();
         List<Promo> promos = null;
         try {
             promos = db.getDao(Promo.class).queryForAll();

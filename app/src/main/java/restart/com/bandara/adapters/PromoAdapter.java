@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,8 +39,9 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position){
-        holder.promoName.setText(itemList.get(position).getName());
-        holder.promoPhoto.setImageResource(itemList.get(position).getPhoto());
+        Promo p = itemList.get(position);
+        holder.promoName.setText(p.getName());
+        Glide.with(context).load("").placeholder(p.getPhoto()).centerCrop().crossFade().into(holder.promoPhoto);
     }
 
     @Override
