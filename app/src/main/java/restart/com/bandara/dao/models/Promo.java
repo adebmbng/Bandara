@@ -1,14 +1,26 @@
-package restart.com.bandara;
+package restart.com.bandara.dao.models;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * Created by lenovo on 2/16/2017.
  */
+@DatabaseTable(tableName = "promo")
+public class Promo {
+    @DatabaseField(generatedId = true)
+    private int id;
 
-public class ItemObjectPromo {
+    @DatabaseField
     private String name;
+
+    @DatabaseField
     private int photo;
 
-    public ItemObjectPromo(String name, int photo) {
+    public Promo() {
+    }
+
+    public Promo(String name, int photo) {
         this.name = name;
         this.photo = photo;
     }

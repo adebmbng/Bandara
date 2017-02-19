@@ -1,146 +1,155 @@
 package restart.com.bandara.activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import restart.com.bandara.ItemObjectPromo;
-import restart.com.bandara.R;
-import restart.com.bandara.RecyclerViewAdapterPromo;
+import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import restart.com.bandara.MyApplication;
+import restart.com.bandara.R;
+import restart.com.bandara.adapters.PromoAdapter;
+import restart.com.bandara.dao.DatabaseHelper;
+import restart.com.bandara.dao.models.Promo;
+import restart.com.bandara.presenters.promo.PromoPresenter;
+import restart.com.bandara.presenters.promo.PromoPresenters;
+import restart.com.bandara.presenters.promo.PromoView;
+import restart.com.bandara.services.APIService;
+
+public class MainActivity extends AppCompatActivity implements PromoView{
+    private static final String TAG = "MainActivity";
     private TextView textViewSearch;
     private LinearLayoutManager lLayout;
+    private PromoPresenter presenters;
+    private Context ctx;
+
+    private ProgressDialog progressDialog;
+
+    private List<Promo> mList;
+    private PromoAdapter adapter;
+
+    @BindView(R.id.toolbar)Toolbar toolbar;
+    @BindView(R.id.recycler_view)RecyclerView rView;
+    @BindView(R.id.btn_book)Button btnBook;
+
+    @Inject
+    SharedPreferences sp;
+
+    @Inject
+    APIService api;
+
+    @Inject
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        ctx = this;
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
+        ((MyApplication) getApplication()).getDc().inject(this);
+        setPresenter(presenters);
 
-        //textViewSearch = (TextView) findViewById(R.id.textViewSearch);
-
-        List<ItemObjectPromo> rowListItem = getAllItemList();
         lLayout = new LinearLayoutManager(MainActivity.this);
-
-        RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
         rView.setLayoutManager(lLayout);
 
-        RecyclerViewAdapterPromo rcAdapter = new RecyclerViewAdapterPromo(MainActivity.this, rowListItem);
-        rView.setAdapter(rcAdapter);
+        Log.d(TAG, db.countPromo()+"<--");
+        if(db.countPromo()==0){
+            presenters.start();
+        } else {
+            presenters.getPromoDb();
+        }
 
-        Button buttonBook = (Button) findViewById(R.id.btn_book);
-        buttonBook.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ConfirmationActivity.class);
-                startActivity(i);
-            }
-        });
+
+    }
+
+    @OnClick(R.id.btn_book)
+    void gotoBook(){
+        Intent i = new Intent(MainActivity.this, ConfirmationActivity.class);
+        startActivity(i);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
 
-        //MenuItem searchItem = menu.findItem(R.id.search);
-        final MenuItem profileItem = menu.findItem(R.id.profile);
-        final MenuItem historyItem = menu.findItem(R.id.history);
-
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-//            @Override
-//            public boolean onQueryTextSubmit(String query){
-//                textViewSearch.setText("Hasil pencarian Query:" + query);
-//                searchView.clearFocus();
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText){
-//                return false;
-//            }
-//        });
-
-//        searchView.setOnCloseListener(new SearchView.OnCloseListener(){
-//            @Override
-//            public boolean onClose(){
-//                profileItem.setVisible(true);
-//                historyItem.setVisible(true);
-//                return true;
-//            }
-//        });
-
-//        searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                profileItem.setVisible(false);
-//                historyItem.setVisible(false);
-//                return true;
-//            }
-//        });
-
-        profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent i = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(i);
-                return true;
-            }
-        });
-
-        historyItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent i = new Intent(MainActivity.this, HistoryActivity.class);
-                startActivity(i);
-                return true;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.profile) {
+            Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(i);
+            return true;
+        } else if(id == R.id.history){
+            Intent i = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(i);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private List<ItemObjectPromo> getAllItemList(){
-        List<ItemObjectPromo> allItems = new ArrayList<>();
-        allItems.add(new ItemObjectPromo("Promo 10%", R.drawable.newyork));
-        allItems.add(new ItemObjectPromo("Promo 15%", R.drawable.canada));
-        allItems.add(new ItemObjectPromo("Promo 20%", R.drawable.uk));
-        allItems.add(new ItemObjectPromo("Promo 25%", R.drawable.germany));
-        allItems.add(new ItemObjectPromo("Promo 30%", R.drawable.sweden));
+    @Override
+    public void onLoadPromo() {
+        progressDialog = new ProgressDialog(MainActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage("Memuat Data");
+        progressDialog.show();
+    }
 
-        return allItems;
+    @Override
+    public void onFinishedLoading(List<Promo> list) {
+        progressDialog.dismiss();
+        if(list!=null) {
+            mList = list;
+            adapter = new PromoAdapter(MainActivity.this, mList);
+            rView.setAdapter(adapter);
+        } else {
+            onFailedLoading("Tidak ada Promo");
+        }
+    }
+
+    @Override
+    public void onFailedLoading(String msg) {
+        progressDialog.dismiss();
+        Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setPresenter(PromoPresenter presenter) {
+        if(presenter!=null){
+            presenters = presenter;
+        } else {
+            presenters = new PromoPresenters(this, api, sp, db);
+        }
     }
 }

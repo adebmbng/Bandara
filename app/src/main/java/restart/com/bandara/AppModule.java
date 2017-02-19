@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import restart.com.bandara.dao.DatabaseHelper;
 import restart.com.bandara.services.APIService;
 import restart.com.bandara.utils.Constant;
 import retrofit2.Retrofit;
@@ -24,6 +27,7 @@ public class AppModule {
 
     private Application app;
     private APIService api;
+    private DatabaseHelper db;
 
     public AppModule(Application app) {
         this.app = app;
@@ -38,6 +42,14 @@ public class AppModule {
                 .client(client.build())
                 .build();
         api = base.create(APIService.class);
+
+        db = new DatabaseHelper(app.getApplicationContext());
+    }
+
+    @Provides
+    @Singleton
+    DatabaseHelper provideDB(){
+        return db;
     }
 
     @Provides

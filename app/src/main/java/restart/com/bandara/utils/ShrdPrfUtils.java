@@ -25,4 +25,8 @@ public class ShrdPrfUtils {
         ed.commit();
         Log.d(TAG, key+" commited");
     }
+
+    public static boolean getBoolean(SharedPreferences sp, String key){
+        return sp.getBoolean(key, false);
+    }
 }
