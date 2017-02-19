@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import restart.com.bandara.activities.LoginActivity;
+import restart.com.bandara.presenters.login.LoginPresenters;
 
 /**
  * Created by Debam on 2/19/17.
@@ -13,4 +14,5 @@ import restart.com.bandara.activities.LoginActivity;
 @Component(modules = {AppModule.class})
 public interface DIComponent {
     void inject(LoginActivity act);
+    void inject(LoginPresenters act);
 }

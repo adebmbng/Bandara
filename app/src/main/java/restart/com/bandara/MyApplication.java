@@ -8,4 +8,18 @@ import android.app.Application;
 
 public class MyApplication extends Application {
 
+    DIComponent dc;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        dc = DaggerDIComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
+    }
+
+    public DIComponent getDc() {
+        return dc;
+    }
+
 }

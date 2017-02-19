@@ -10,4 +10,8 @@ public class Constant {
     public class URL_CONSTANT {
         public static final String BASE_URL = "";
     }
+
+    public class SHARED_PREFERENCE {
+        public static final String HAS_LOGIN = "hasLogin";
+    }
 }
