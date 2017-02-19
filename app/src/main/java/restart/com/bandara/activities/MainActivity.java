@@ -75,12 +75,7 @@ public class MainActivity extends AppCompatActivity implements PromoView{
         lLayout = new LinearLayoutManager(MainActivity.this);
         rView.setLayoutManager(lLayout);
 
-        Log.d(TAG, db.countPromo()+"<--");
-        if(db.countPromo()==0){
-            presenters.start();
-        } else {
-            presenters.getPromoDb();
-        }
+        presenters.start();
 
 
     }

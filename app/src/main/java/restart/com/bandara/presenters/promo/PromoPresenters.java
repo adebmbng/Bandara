@@ -62,7 +62,12 @@ public class PromoPresenters implements PromoPresenter{
     @Override
     public void start() {
         view.onLoadPromo();
-        getPromo();
+        if(db.countPromo()==0){
+            getPromo();
+        } else {
+            getPromoDb();
+        }
+
     }
 
     public class buildPromo implements Runnable {
