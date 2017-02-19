@@ -94,7 +94,6 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
                 new Runnable() {
                     public void run() {
                         _signupButton.setEnabled(true);
-                        setResult(RESULT_OK, null);
                         finish();
                         progressDialog.dismiss();
                     }
@@ -110,18 +109,21 @@ public class SignupActivity extends AppCompatActivity implements SignupView{
 
     @Override
     public void onValidateNameWrong() {
+        _signupButton.setEnabled(true);
         progressDialog.dismiss();
         _nameText.setError("at least 3 characters");
     }
 
     @Override
     public void onValidateEmailWrong() {
+        _signupButton.setEnabled(true);
         progressDialog.dismiss();
         _emailText.setError("enter a valid email address");
     }
 
     @Override
     public void onValidatePassWrong() {
+        _signupButton.setEnabled(true);
         progressDialog.dismiss();
         _passwordText.setError("between 4 and 10 alphanumeric characters");
     }

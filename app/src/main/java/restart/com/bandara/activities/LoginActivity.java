@@ -1,10 +1,15 @@
 package restart.com.bandara.activities;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.Button;
@@ -53,6 +58,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     @Inject
     APIService api;
 
+    private int PERMISSION_ALL = 1;
+    private String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
         ((MyApplication) getApplication()).getDc().inject(this);
         setPresenter(presenters);
+
+        requestAllPermission();
 
     }
 
@@ -158,6 +170,44 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             presenters = presenter;
         } else {
             presenters = new LoginPresenters(this, sp, api);
+        }
+    }
+
+    public void requestAllPermission(){
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void requestSinglePermission(String perm){
+        if(!hasPermissions(this, perm)){
+            ActivityCompat.requestPermissions(this, new String[]{perm}, PERMISSION_ALL);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if (grantResults.length > 0 ){
+                    for(int i=0; i<grantResults.length ; i++){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                            requestSinglePermission(permissions[i]);
+                        }
+                    }
+                }
+                break;
         }
     }
 }
