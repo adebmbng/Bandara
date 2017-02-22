@@ -1,0 +1,20 @@
+#
+# generated on 2017/02/19 08:50:00
+#
+# --table-start--
+dataClass=restart.com.bandara.dao.models.Promo
+tableName=promo
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=photo
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
