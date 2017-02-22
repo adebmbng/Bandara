@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements PromoView{
 
     @OnClick(R.id.btn_book)
     void gotoBook(){
-        Intent i = new Intent(MainActivity.this, ConfirmationActivity.class);
+        Intent i = new Intent(MainActivity.this, MapsActivity.class);
         startActivity(i);
     }
 

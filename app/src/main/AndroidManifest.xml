@@ -58,6 +58,10 @@
             android:label="Tranxit Badaruddin"/>
 
         <activity
+            android:name="restart.com.bandara.activities.MapsActivity"
+            android:label="Tranxit Badaruddin"/>
+
+        <activity
             android:name="restart.com.bandara.activities.ConfirmationActivity"
             android:label="Tranxit Badaruddin"/>
 
@@ -76,6 +80,10 @@
         <activity
             android:name="restart.com.bandara.activities.EditProfileActivity"
             android:label="Tranxit Badaruddin"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDhDgQffr0ebP3jBIanPgb1LyOhPvWAqNA"/>
 
     </application>
 
